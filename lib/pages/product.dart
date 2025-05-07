@@ -50,8 +50,7 @@ class ProductPage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 itemCount: categories.length,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(width: 20),
+                separatorBuilder: (context, index) => const SizedBox(width: 20),
                 itemBuilder: (context, index) {
                   final isAll = index == 0;
                   return isAll
@@ -183,8 +182,7 @@ class ProductPage extends StatelessWidget {
                                   Icon(Icons.star,
                                       color: Colors.amber, size: 16),
                                   SizedBox(width: 4),
-                                  Text("4.5",
-                                      style: TextStyle(fontSize: 12)),
+                                  Text("4.5", style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                             ),
@@ -208,11 +206,15 @@ class ProductPage extends StatelessWidget {
                         ),
                         Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             color: const Color(0xFF8A7F6F),
-                            borderRadius: const BorderRadius.vertical(
-                              bottom: Radius.circular(16),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(30),
+                              bottomRight: Radius.circular(30),
                             ),
                           ),
                           child: Text(
