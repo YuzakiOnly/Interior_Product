@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'pages/home.dart';
+import 'pages/search.dart';
+import 'pages/product.dart';
+import 'pages/settings.dart';
+import 'pages/profil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,33 +18,27 @@ class MyApp extends StatelessWidget {
       title: 'Product Interior',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const HomePage(),
+      home: const MainPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
-  void _onNavBarTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   final List<Widget> _pages = const [
-    Center(child: Text("Home Page")),
-    Center(child: Text("Search Page")),
-    Center(child: Text("Keranjang Page")),
-    Center(child: Text("Settings Page")),
-    Center(child: Text("Profile Page")),
+    HomePage(),
+    SearchPage(),
+    ProductPage(),
+    SettingsPage(),
+    ProfilePage(),
   ];
 
   final List<String> _titles = [
@@ -49,6 +48,12 @@ class _HomePageState extends State<HomePage> {
     'Settings',
     'Profile',
   ];
+
+  void _onNavBarTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +68,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const CircleAvatar(
                     radius: 30,
-                    backgroundImage:
-                        AssetImage('assets/profil/profil.jpg'),
+                    backgroundImage: AssetImage('assets/profil/profil.jpg'),
                   ),
                   const SizedBox(width: 12),
                   Column(
@@ -88,51 +92,36 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() => _selectedIndex = 0);
-              },
+              onTap: () => setState(() => _selectedIndex = 0),
             ),
             ListTile(
               leading: const Icon(Icons.search),
               title: const Text('Search'),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() => _selectedIndex = 1);
-              },
+              onTap: () => setState(() => _selectedIndex = 1),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_cart),
               title: const Text('Product'),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() => _selectedIndex = 2);
-              },
+              onTap: () => setState(() => _selectedIndex = 2),
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
-              onTap: () {
-                Navigator.pop(context);
-                setState(() => _selectedIndex = 3);
-              },
+              onTap: () => setState(() => _selectedIndex = 3),
             ),
           ],
         ),
       ),
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation:
+            0, // Set elevation ke 0 karena kita akan menggunakan shadow manual
         surfaceTintColor: Colors.transparent,
-        elevation: 1,
         leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu, color: Colors.black),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         title: Text(
           _titles[_selectedIndex],
@@ -145,6 +134,21 @@ class _HomePageState extends State<HomePage> {
             child: Icon(Icons.search, color: Colors.black),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(4.0), // Tinggi bayangan
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2), // Warna bayangan
+                  offset:
+                      Offset(0, 2), // Posisi bayangan (horizontal, vertical)
+                  blurRadius: 6, // Seberapa kabur bayangan
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -156,25 +160,14 @@ class _HomePageState extends State<HomePage> {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: [
+          const BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          const BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: '',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '',
-          ),
+              icon: Icon(Icons.shopping_cart), label: ''),
+          const BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
           BottomNavigationBarItem(
             icon: Container(
-              padding: const EdgeInsets.all(2), // Ketebalan stroke
+              padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.black, width: 1.5),
