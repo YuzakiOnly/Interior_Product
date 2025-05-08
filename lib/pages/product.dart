@@ -5,7 +5,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = ['ALL', 'CHAIR', 'TABLE', 'LIGHTING', 'DECORATION'];
+    final categories = ['ALL', 'CHAIR', 'TABLE', 'LIGHTING', 'DECORATION', 'CHAIR', 'TABLE', 'LIGHTING' ];
 
     final products = [
       {
