@@ -115,7 +115,7 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation:
-            0, // Set elevation ke 0 karena kita akan menggunakan shadow manual
+            0, 
         surfaceTintColor: Colors.transparent,
         leading: Builder(
           builder: (context) => IconButton(
@@ -140,10 +140,10 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Warna bayangan
+                  color: Colors.black.withOpacity(0.2), 
                   offset:
-                      Offset(0, 2), // Posisi bayangan (horizontal, vertical)
-                  blurRadius: 6, // Seberapa kabur bayangan
+                      Offset(0, 2),
+                  blurRadius: 6, 
                 ),
               ],
             ),
