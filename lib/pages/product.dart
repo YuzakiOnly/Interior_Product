@@ -5,7 +5,16 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = ['ALL', 'CHAIR', 'TABLE', 'LIGHTING', 'DECORATION', 'CHAIR', 'TABLE', 'LIGHTING' ];
+    final categories = [
+      'ALL',
+      'CHAIR',
+      'TABLE',
+      'LIGHTING',
+      'DECORATION',
+      'CHAIR',
+      'TABLE',
+      'LIGHTING'
+    ];
 
     final products = [
       {
@@ -167,7 +176,11 @@ class ProductPage extends StatelessWidget {
                   return Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.grey.shade300, // warna outline
+                        width: 1.0, // ketebalan outline tipis
+                      ),
                     ),
                     child: Column(
                       children: [
